@@ -1,6 +1,7 @@
 - name: Play1  
   hosts: all                        # groupName in the inventory file 
   tasks: 
+  deprecation_warnings=False
     - name: Printing Hai from task1 of play1
       ansible.builtin.debug:
         msg: "Hai from task1 of play1"
