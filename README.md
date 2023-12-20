@@ -55,3 +55,14 @@ and if the variable is present in between the string of words, you don't have to
                 main.yml      #  <-- default lower priority variables for this role
             meta/             #
                 main.yml      #  <-- role dependencies
+
+
+## When to use ansible pull vs ansible push ?
+    1) When you infrastructure is static, then we will host an ANSIBLE Server and will target configuration management on all the nodes from your ansible server. 
+
+2) When you infrastrucre is not static, which means on cloud we often scale out and down the infra , in this case manintaining the inventory is quite challenging and to avoind this, what we do is, as a part of the BOOTSTRAPPING / INITIALIZATION , we will let the ansible-pull command to run.
+
+Points to be notes when using pull : 
+    
+    * Ensure your nodes running ansible has ansible installed.
+    * Pull only works from GIT. 
