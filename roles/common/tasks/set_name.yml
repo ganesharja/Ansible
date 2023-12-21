@@ -1,2 +1,0 @@
-- name: Configuring Service Name 
-  ansible.builtin.shell: set-hostname {{COMPONENT}}-{{ENV}}
