@@ -15,3 +15,5 @@
     - name: Printing Hai from task1 of play2
       ansible.builtin.debug:
         msg: "Olaaaaaaaaaaaaaa : task1 from play2"
+
+hiiiii
