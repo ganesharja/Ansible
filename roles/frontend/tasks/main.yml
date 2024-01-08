@@ -35,4 +35,4 @@
     daemon_reload: yes 
 
 - name: confugiring Service name
-  ansible.builtin.shell: set-hostname "{{COMPONENT}}-{{ENV}}"
+  ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
