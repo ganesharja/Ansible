@@ -30,6 +30,9 @@
 - name: Starting Nginx 
   systemd:
     name: nginx
-    state: started
+    state: restarted
     enabled: yes
     daemon_reload: yes 
+
+- name: confugiring Service name
+  ansible.builtin.shell: set-hostname "{{COMPONENT}}-{{ENV}}"
