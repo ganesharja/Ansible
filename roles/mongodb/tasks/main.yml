@@ -26,14 +26,13 @@
     dest: /tmp 
     remote_src: yes
 
-
-- name: Injecting the {{COMPONENT}} schema 
-  community.mongodb.mongodb_shell:
+- name: Injecting the {{COMPONENT}} schema
+  community.mongodb.mongodb_shell: 
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
-  loop: 
-    - users 
-    - catalogue
+    loop:
+      - users
+      - catalogue
 
 
 - name: confugiring Service name
