@@ -32,22 +32,22 @@
     group: "{{APPUSER}}"
     remote_src: yes
 
-# - name: Generating Artifacts with npm install 
-#   community.general.npm:
-#     path: /home/{{APPUSER}}/{{COMPONENT}}/ 
+- name: Generating Artifacts with npm install 
+  community.general.npm:
+    path: /home/{{APPUSER}}/{{COMPONENT}}/ 
 
-# - name: Copying the systemd file
-#   ansible.builtin.template:
-#     src: systemd.service
-#     dest: /etc/systemd/system/{{COMPONENT}}.service
+- name: Copying the systemd file
+  ansible.builtin.template:
+    src: systemd.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service
 
 
-# - name: Starting {{COMPONENT}} 
-#   systemd:
-#     name: "{{COMPONENT}}"
-#     state: restarted
-#     enabled: yes
-#     daemon_reload: yes 
+- name: Starting {{COMPONENT}} 
+  systemd:
+    name: "{{COMPONENT}}"
+    state: restarted
+    enabled: yes
+    daemon_reload: yes 
 
 - name: confugiring Service name
   ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
