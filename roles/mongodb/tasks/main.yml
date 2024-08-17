@@ -1,4 +1,4 @@
-- name: confugiring the {{COMPONENT}} repo
+- name: Confugiring the {{COMPONENT}} repo
   ansible.builtin.copy:
     src: mongo.repo
     dest: /etc/yum.repos.d/mongodb.repo 
