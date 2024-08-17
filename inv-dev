@@ -3,3 +3,6 @@ frontend-dev.roboshop.internalganesh
 
 [mongodb]
 mongodb-dev.roboshop.internalganesh
+
+[catalogue]
+catalogue-dev.roboshop.internalganesh
