@@ -8,11 +8,24 @@
       name: mongodb-org
       state: present
 
+- name: Confugiring the {{COMPONENT}} visiblity
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
 - name: Starting {{COMPONENT}}
   systemd:
     name: mongod
     state: restarted
     enabled: yes
+
+- name: Download and extracting {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/mongod/archive/main.zip
+    dest: /tmp 
+    remote_src: yes
+
 
 - name: confugiring Service name
   ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
