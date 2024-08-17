@@ -33,7 +33,6 @@
   loop:
     - users
     - catalogue
-  ignore_erros: yes
 
 - name: confugiring Service name
   ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
