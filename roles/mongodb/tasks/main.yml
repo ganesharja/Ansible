@@ -34,6 +34,5 @@
     - users
     - catalogue
 
-
-# - name: confugiring Service name
-#   ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
+- name: confugiring Service name
+  ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
