@@ -31,8 +31,8 @@
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
   loop:
-      - users
-      - catalogue
+    - users
+    - catalogue
 
 
 - name: confugiring Service name
