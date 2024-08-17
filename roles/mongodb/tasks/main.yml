@@ -26,7 +26,6 @@
     dest: /tmp 
     remote_src: yes
 
-
 - name: Injecting the "{{COMPONENT}}" schema
   community.mongodb.mongodb_shell: 
     file: "/tmp/mongodb-main/'{{item}}'.js"
