@@ -27,9 +27,9 @@
     remote_src: yes
 
 - name: Injecting the {{COMPONENT}} schema
-  action: "{{ lookup('file', '~/.ansible/collections/ansible_collections/community/mongodb/plugins/modules/mongodb_shell.py') }}"
-  file: "/tmp/mongodb-main/{{item}}.js"
-  idempotent: yes
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/{{item}}.js"
+    idempotent: yes
   loop:
     - users
     - catalogue
