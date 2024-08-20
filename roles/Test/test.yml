@@ -1,0 +1,6 @@
+- hosts: localhost
+  tasks:
+    - name: Test MongoDB Shell
+      community.mongodb.mongodb_shell:
+      file: "/tmp/mongodb-main/{{users}}.js"
+      idempotent: yes
