@@ -27,7 +27,7 @@
     remote_src: yes
 
 - name: Injecting the {{COMPONENT}} schema
-  community.mongodb.mongodb_shell:
+  community.mongodb.plugins.modules.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
   loop:
