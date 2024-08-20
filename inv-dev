@@ -9,3 +9,6 @@ catalogue-dev.roboshop.internalganesh
 
 [redis]
 redis-dev.roboshop.internalganesh
+
+[user]
+user-dev.roboshop.internalganesh
