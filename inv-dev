@@ -6,3 +6,6 @@ mongodb-dev.roboshop.internalganesh
 
 [catalogue]
 catalogue-dev.roboshop.internalganesh
+
+[redis]
+redis-dev.roboshop.internalganesh
