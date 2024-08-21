@@ -27,6 +27,7 @@
     remote_src: yes
 
 - name: Injecting the {{COMPONENT}} schema
+  ansible_python_interpreter: /usr/bin/python3
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
