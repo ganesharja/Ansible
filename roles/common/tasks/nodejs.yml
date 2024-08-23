@@ -6,31 +6,15 @@
       name: nodejs  
       state: present
 
-- name: Configuring {{COMPONENT}}
+- name: creating App User 
   ansible.builtin.include_role:
     name: common
     tasks_from: create_user
 
-
 - name: Download and extracting {{COMPONENT}}
-  ansible.builtin.unarchive:
-    src: https://github.com/stans-robot-project/{{COMPONENT}}/archive/main.zip
-    dest: /tmp
-    remote_src: yes  
-
-- name: Performing {{COMPONENT}} Cleanup
-  ansible.builtin.file:
-    path: /home/"{{APPUSER}}/{{COMPONENT}}
-    state: absent
-  ignore_errors: yes
-
-- name: Copying the file to {{APPUSER}} home directory
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: /home/{{APPUSER}}/{{COMPONENT}}/
-    owner: "{{APPUSER}}"
-    group: "{{APPUSER}}"
-    remote_src: yes
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: dowload_and_extract
 
 - name: Generating Artifacts with npm install 
   community.general.npm:
@@ -49,7 +33,7 @@
     enabled: yes
     daemon_reload: yes 
 
-- name: Configuring {{COMPONENT}}
+- name: Setting the name
   ansible.builtin.include_role:
     name: common
     tasks_from: set_name
