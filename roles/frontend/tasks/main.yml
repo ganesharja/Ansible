@@ -34,5 +34,7 @@
     enabled: yes
     daemon_reload: yes 
 
-- name: confugiring Service name
-  ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
+- name: Configuring the name
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: sat_name
