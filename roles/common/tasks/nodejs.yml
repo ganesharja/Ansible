@@ -6,10 +6,10 @@
       name: nodejs  
       state: present
 
-- name: Creating {{APPUSER}}
-  ansible.builtin.user:
-    name: "{{APPUSER}}"
-    comment: roboshop app user
+- name: Configuring {{COMPONENT}}
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: create_user
 
 
 - name: Download and extracting {{COMPONENT}}
@@ -20,7 +20,7 @@
 
 - name: Performing {{COMPONENT}} Cleanup
   ansible.builtin.file:
-    path: /home/{{APPUSER}}/{{COMPONENT}}
+    path: /home/"{{APPUSER}}/{{COMPONENT}}
     state: absent
   ignore_errors: yes
 
