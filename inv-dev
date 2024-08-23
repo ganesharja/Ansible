@@ -12,3 +12,6 @@ redis-dev.roboshop.internalganesh
 
 [user]
 user-dev.roboshop.internalganesh
+
+[cart]
+cart-dev.roboshop.internalganesh
