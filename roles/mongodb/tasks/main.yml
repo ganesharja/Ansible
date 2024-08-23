@@ -15,7 +15,7 @@
     replace: '0.0.0.0'
 
 - name: Starting {{COMPONENT}}
-  systemd:
+  ansible.builtin.systemd:
     name: mongod
     state: restarted
     enabled: yes
