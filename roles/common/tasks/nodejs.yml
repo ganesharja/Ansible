@@ -20,20 +20,7 @@
   community.general.npm:
     path: /home/{{APPUSER}}/{{COMPONENT}}
 
-- name: Copying the systemd file
-  ansible.builtin.template:
-    src: systemd.service
-    dest: /etc/systemd/system/{{COMPONENT}}.service
-
-
-- name: Starting {{COMPONENT}} 
-  systemd:
-    name: "{{COMPONENT}}"
-    state: restarted
-    enabled: yes
-    daemon_reload: yes 
-
-- name: Setting the name
+- name: Configuring service
   ansible.builtin.include_role:
     name: common
-    tasks_from: set_name
+    tasks_from: config_svc
