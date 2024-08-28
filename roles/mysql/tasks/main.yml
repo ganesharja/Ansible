@@ -10,7 +10,7 @@
 
 - name: Starting {{COMPONENT}}
   ansible.builtin.systemd:
-    name: mqsqld
+    name: mysqld
     state: restarted
     enabled: yes
 
