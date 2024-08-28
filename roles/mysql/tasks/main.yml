@@ -1,6 +1,6 @@
 - name: Confugiring the {{COMPONENT}} repo
   ansible.builtin.copy:
-    src: {{COMPONENT}}.repo
+    src: "{{COMPONENT}}.repo"
     dest: /etc/yum.repos.d/{{COMPONENT}}.repo 
 
 - name: Installing {{COMPONENT}}
@@ -13,6 +13,11 @@
     name: mqsqld
     state: restarted
     enabled: yes
+
+- name: Fetches the log file from the remote node 
+  ansible.builtin.slurp:
+    src: /var/log/mysqld.log
+  register: pwd_log
 
 # - name: Download and extracting {{COMPONENT}}
 #   ansible.builtin.unarchive:
