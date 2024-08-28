@@ -37,4 +37,4 @@
 - name: Configuring the name
   ansible.builtin.include_role:
     name: common
-    tasks_from: sat_name
+    tasks_from: set_name
