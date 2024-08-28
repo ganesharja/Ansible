@@ -19,13 +19,22 @@
     src: /var/log/mysqld.log
   register: pwd_log
 
-- name: Test split filter
-  debug:
-    msg: "{{ 'this is a test' | split(' ') }}"
+- name: Decode the log content
+  set_fact:
+    decoded_content: "{{ pwd_log['content'] | b64decode }}"
 
-- name: Extracting the root password
-  ansible.builtin.set_fact:
-    DEFAULT_PASSWORD: "{{ pwd_log['content'] | b64decode | regex_findall('.*temporary password.*')| join(' ') | split(' ') | last }}"
+- name: Find the temporary password line
+  set_fact:
+    temp_password_line: "{{ decoded_content | regex_findall('.*temporary password.*') | join(' ') }}"
+
+- name: Extract the password
+  set_fact:
+    ROOT_PASSWORD: "{{ temp_password_line.split()[-1] }}"
+
+
+# - name: Extracting the root password
+#   ansible.builtin.set_fact:
+#     DEFAULT_PASSWORD: "{{ pwd_log['content'] | b64decode | regex_findall('.*temporary password.*')| join(' ') | split(' ') | last }}"
 
 - name: Resetting Default root password of {{COMPONENT}} 
   ansible.builtin.shell: echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ROOT_PASSWORD}}';" | mysql --connect-expired-password -uroot -p"{{DEFAULT_PASSWORD}}"
