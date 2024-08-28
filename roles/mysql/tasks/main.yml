@@ -1,6 +1,6 @@
 - name: Confugiring the {{COMPONENT}} repo
   ansible.builtin.copy:
-    src: mongo.repo
+    src: mqsql.repo
     dest: /etc/yum.repos.d/{{COMPONENT}}.repo 
 
 - name: Installing {{COMPONENT}}
