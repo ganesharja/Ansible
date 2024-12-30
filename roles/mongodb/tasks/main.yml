@@ -1,0 +1,40 @@
+- name: Confugiring the {{COMPONENT}} repo
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongodb.repo 
+
+- name: Installing {{COMPONENT}}
+  ansible.builtin.package:
+      name: mongodb-org
+      state: present
+
+- name: Confugiring the {{COMPONENT}} visiblity
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Starting {{COMPONENT}}
+  ansible.builtin.systemd:
+    name: mongod
+    state: restarted
+    enabled: yes
+
+- name: Download and extracting {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: https://github.com/stans-robot-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp 
+    remote_src: yes
+
+- name: Injecting the {{COMPONENT}} schema
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/{{item}}.js"
+    idempotent: yes
+  loop:
+    - users
+    - catalogue
+
+- name: Configuring the name
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: set_name

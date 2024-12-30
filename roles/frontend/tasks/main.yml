@@ -21,7 +21,7 @@
     remote_src: yes                    # This ensure your source file to copy is non remote machine.
 
 - name: Copying the proxy file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf 
     dest: /etc/nginx/default.d/roboshop.conf
                           # Whenever there is a change in this task, then this notify handler will call the task RESTARTING NGINX
@@ -34,5 +34,7 @@
     enabled: yes
     daemon_reload: yes 
 
-- name: confugiring Service name
-  ansible.builtin.shell: "set-hostname {{COMPONENT}}-{{ENV}}"
+- name: Configuring the name
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: sat_name
