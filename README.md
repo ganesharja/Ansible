@@ -55,3 +55,35 @@ and if the variable is present in between the string of words, you don't have to
                 main.yml      #  <-- default lower priority variables for this role
             meta/             #
                 main.yml      #  <-- role dependencies
+
+# When to use ansible pull vs ansible push ?
+
+1) When you infrastructure is static, then we will host an ANSIBLE Server and will target configuration management on all the nodes from your ansible server. 
+
+2) When you infrastrucre is not static, which means on cloud we often scale out and down the infra , in this case manintaining the inventory is quite challenging and to avoind this, what we do is, as a part of the BOOTSTRAPPING / INITIALIZATION , we will let the ansible-pull command to run.
+
+Points to be notes when using pull : 
+    
+    * Ensure your nodes running ansible has ansible installed.
+    * Pull only works from GIT. 
+
+
+# How to use ansible pull ?
+
+    $ ansible-pull -U https://github.com/b55-clouddevops/ansible.git -e ENV=dev -e COMPONENT=mongodb roboshop-pull.yml
+
+# Role Dependency :
+    In Ansible terms, a dependency is any role that needs to have run before the current role runs.
+
+# What is a handler and why do we need that ?
+
+    Ansible provides feature named handlers, which is like a task but will only run when called by a notifier in another task. 
+
+    This feature is important because your requirements for running a task may depend on the state of a service, existence of a file or a follow up tasks when state changed.
+
+# Grok Debugger : Helps in converting unstructured logs to structured :
+    grok    : https://grokdebugger.com/
+    patterns: https://github.com/cjslack/grok-debugger/blob/master/public/patterns/grok-patterns        
+
+# Frontend Grok Pattern :
+    %{HTTPDATE:log_timestamp}%{SPACE}%{IP:source_ip}%{SPACE}%{WORD:http_method}%{SPACE}%{PATH:http_path}%{SPACE}%{WORD}/%{NUMBER}%{SPACE}%{NUMBER:http_status:int}%{SPACE}%{NUMBER:bytes_sent}%{SPACE}%{NUMBER:response_time:float}
